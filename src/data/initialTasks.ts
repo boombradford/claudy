@@ -1,0 +1,43 @@
+import type { VideoTask } from '../types';
+
+export const INITIAL_TASKS: VideoTask[] = [
+  {
+    id: 'task-1',
+    title: 'SOUTH',
+    artist: 'hxvrmxn',
+    tag: 'Editing',
+    status: 'editing',
+    platform: 'youtube',
+    color: 'bg-cyan-500',
+    createdAt: Date.now() - 86400000 * 2,
+    updatedAt: Date.now() - 3600000,
+    order: 0,
+    notes: 'Focus on the drop at 1:45',
+  },
+  {
+    id: 'task-2',
+    title: 'PATH',
+    artist: 'ALTARE',
+    tag: 'Record',
+    status: 'recording',
+    platform: 'youtube',
+    color: 'bg-purple-500',
+    createdAt: Date.now() - 86400000,
+    updatedAt: Date.now() - 7200000,
+    order: 1,
+    dueDate: Date.now() + 86400000 * 2,
+  },
+  {
+    id: 'task-3',
+    title: 'Late Night Wave Pack',
+    artist: 'Various',
+    tag: 'Thumbnail',
+    status: 'ready',
+    platform: 'shorts',
+    color: 'bg-pink-500',
+    createdAt: Date.now() - 86400000 * 3,
+    updatedAt: Date.now() - 1800000,
+    order: 2,
+    notes: 'Multi-track compilation',
+  },
+];
