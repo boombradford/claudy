@@ -23,7 +23,7 @@ export interface VideoTask {
 
 export interface TabConfig {
   id: TabId;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<any>;
   label: string;
 }
 

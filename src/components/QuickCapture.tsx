@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
@@ -37,16 +37,21 @@ export const QuickCapture: React.FC<QuickCaptureProps> = ({ onAddTask }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!value.trim()) return;
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue) return;
 
     // Parse input: "song • artist" or "song - artist" or just "song"
-    const parts = value.split(/[•\-–]/);
-    const title = parts[0]?.trim() || 'Untitled';
-    const artist = parts[1]?.trim() || 'Unknown';
+    const parts = trimmedValue.split(/[•\-–]/);
+    const title = parts[0]?.trim();
+    const artist = parts[1]?.trim();
+
+    // Validate that we have at least a title
+    if (!title) return;
 
     onAddTask({
       title,
-      artist,
+      artist: artist || 'Unknown',
       tag: 'Record',
       status: 'queue',
       platform: 'youtube',
