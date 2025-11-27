@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   Calendar,
   Settings,
+  Radio,
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 import type { TabId, TabConfig } from '../types';
@@ -13,6 +14,7 @@ const TABS: TabConfig[] = [
   { id: 'dashboard', icon: LayoutGrid, label: 'Studio' },
   { id: 'tasks', icon: CheckCircle2, label: 'Pipeline' },
   { id: 'calendar', icon: Calendar, label: 'Schedule' },
+  { id: 'studio', icon: Radio, label: 'WaveLoop' },
   { id: 'settings', icon: Settings, label: 'Settings' },
 ];
 

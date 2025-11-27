@@ -1,4 +1,4 @@
-export type TabId = 'dashboard' | 'tasks' | 'calendar' | 'settings';
+export type TabId = 'dashboard' | 'tasks' | 'calendar' | 'settings' | 'studio';
 
 export type TaskStatus = 'queue' | 'recording' | 'editing' | 'ready';
 
@@ -23,7 +23,7 @@ export interface VideoTask {
 
 export interface TabConfig {
   id: TabId;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: any;
   label: string;
 }
 
