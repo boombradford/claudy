@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { VideoTask, TaskStatus, Platform, TaskTag } from '../types';
+import type { VideoTask, TaskStatus } from '../types';
 import { useLocalStorage } from './useLocalStorage';
 import { INITIAL_TASKS } from '../data/initialTasks';
 import { generateTaskId, sortTasksByOrder } from '../utils/tasks';

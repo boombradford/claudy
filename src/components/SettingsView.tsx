@@ -15,14 +15,21 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onClearAllTasks,
 }) => {
   const handleExport = () => {
-    const dataStr = JSON.stringify(tasks, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `wavereact-tasks-${Date.now()}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
+    try {
+      const dataStr = JSON.stringify(tasks, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `wavereact-tasks-${Date.now()}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Failed to export tasks:', error);
+      alert('Failed to export tasks. Please try again.');
+    }
   };
 
   const handleImport = () => {
@@ -39,10 +46,17 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             if (Array.isArray(importedTasks) && onImportTasks) {
               onImportTasks(importedTasks);
               alert(`Successfully imported ${importedTasks.length} tasks!`);
+            } else {
+              alert('Invalid file format. Expected an array of tasks.');
             }
           } catch (error) {
+            console.error('Import error:', error);
             alert('Failed to import tasks. Please check the file format.');
           }
+        };
+        reader.onerror = () => {
+          console.error('File reading error');
+          alert('Failed to read file. Please try again.');
         };
         reader.readAsText(file);
       }

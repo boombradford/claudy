@@ -98,6 +98,18 @@ export function getStatusLabel(status: TaskStatus): string {
 }
 
 /**
+ * Get platform label for display
+ */
+export function getPlatformLabel(platform: Platform): string {
+  const labels: Record<Platform, string> = {
+    youtube: 'YouTube',
+    shorts: 'Shorts',
+    tiktok: 'TikTok',
+  };
+  return labels[platform];
+}
+
+/**
  * Reorder tasks after drag and drop
  */
 export function reorderTasks(tasks: VideoTask[], startIndex: number, endIndex: number): VideoTask[] {

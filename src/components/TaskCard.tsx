@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MoreHorizontal, Youtube, Edit2, Trash2, Check, X } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { GlassCard } from './GlassCard';
-import { getStatusLabel } from '../utils/tasks';
+import { getStatusLabel, getPlatformLabel } from '../utils/tasks';
 import type { VideoTask } from '../types';
 
 interface TaskCardProps {
@@ -214,7 +214,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
               <div className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10">
                 <Youtube size={12} className="text-red-500" />
                 <span className="uppercase tracking-[0.16em]">
-                  {task.platform === 'shorts' ? 'Shorts' : task.platform === 'tiktok' ? 'TikTok' : 'YouTube'}
+                  {getPlatformLabel(task.platform)}
                 </span>
               </div>
             </div>

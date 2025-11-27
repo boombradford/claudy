@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Header } from './components/Header';
@@ -15,12 +15,22 @@ function App() {
   const { tasks, addTask, updateTask, deleteTask, reorderTasks } = useTasks();
 
   const handleImportTasks = (importedTasks: any[]) => {
+    if (!Array.isArray(importedTasks)) {
+      console.error('Invalid import data: expected an array');
+      return;
+    }
+
     // Validate and import tasks
+    let importCount = 0;
     importedTasks.forEach((task) => {
-      if (task.title && task.artist) {
+      // Ensure required fields exist
+      if (task && typeof task === 'object' && task.title && task.artist) {
         addTask(task);
+        importCount++;
       }
     });
+
+    console.log(`Successfully imported ${importCount} tasks`);
   };
 
   const handleClearAllTasks = () => {
